@@ -27,6 +27,9 @@ open FSharpKoans.Core
 //---------------------------------------------------------------
 [<Koan(Sort = 15)>]
 module ``about the stock example`` =
+    open System.Net.Http
+    open System.Net.Http
+    open System.Text.RegularExpressions
     
     let stockData =
         [ "Date,Open,High,Low,Close,Volume,Adj Close";
@@ -60,6 +63,18 @@ module ``about the stock example`` =
 
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
-        
+        let splitCommas (x:string) =
+            x.Split([|','|])
+
+        let getBiggestDifference (stock:string[]) =
+            abs (float stock.[1] - float stock.[4])
+                
+        let elementWithBiggestStockDifference = 
+            stockData
+            |> List.tail
+            |> List.map splitCommas
+            |> List.maxBy getBiggestDifference   
+            
+        let result = elementWithBiggestStockDifference.[0]
+            
         AssertEquality "2012-03-13" result
