@@ -55,7 +55,7 @@ module ``about filtering`` =
             |> List.find (fun name -> name = "Bob" )
             
         //??? What would happen if there are 2 Bobs in the List? 
-        // der erste eintrag wird geliefert
+        // der erste eintrag wird geliefert!
 
         AssertEquality expected_name actual_name
 
